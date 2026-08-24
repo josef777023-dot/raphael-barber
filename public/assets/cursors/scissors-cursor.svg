@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!--
+    Drawn already OPEN at rest (two blades spread apart around the pivot),
+    like real open scissors. CustomScissorsCursor.tsx injects this markup
+    inline (not as a plain <img>) so it can rotate #blade-a and #blade-b
+    independently around the shared pivot (15,15) to animate a closing
+    "snip" on click, then spring back open.
+
+    The click point (hotspot) is the CLOSED tip position at (4,4) — the point
+    both blades converge to when they snip shut — not the resting open tips.
+  -->
+  <defs>
+    <linearGradient id="goldBlade" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F3DFA8" />
+      <stop offset="45%" stop-color="#D8B463" />
+      <stop offset="100%" stop-color="#A8792F" />
+    </linearGradient>
+    <linearGradient id="goldRing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E9CD84" />
+      <stop offset="100%" stop-color="#B4863B" />
+    </linearGradient>
+  </defs>
+
+  <g stroke="#241a0c" stroke-width="0.9" stroke-linejoin="round">
+    <!-- Blade A: tip upper-right-ish, handle lower-right -->
+    <g id="blade-a">
+      <path d="M 7.5 1.5 L 11 3.2 L 22.6 24.3 L 18.9 22.9 Z" fill="url(#goldBlade)" />
+      <circle cx="20.2" cy="23.9" r="3.6" fill="none" stroke-width="1.9" stroke="url(#goldRing)" />
+    </g>
+
+    <!-- Blade B: tip lower-left-ish, handle lower-right (mirrored) -->
+    <g id="blade-b">
+      <path d="M 1.5 7.5 L 3.2 11 L 24.3 22.6 L 22.9 18.9 Z" fill="url(#goldBlade)" />
+      <circle cx="23.9" cy="20.2" r="3.2" fill="none" stroke-width="1.8" stroke="url(#goldRing)" />
+    </g>
+
+    <!-- Pivot screw (fixed, does not rotate) -->
+    <circle cx="15" cy="15" r="1.9" fill="url(#goldRing)" stroke-width="0.6" />
+  </g>
+</svg>

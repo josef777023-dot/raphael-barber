@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #090909;
+  --color-ink-soft: #12110f;
+  --color-card: #181612;
+  --color-card-hover: #1f1c17;
+  --color-hairline: rgba(200, 164, 93, 0.22);
+  --color-gold: #c8a45d;
+  --color-gold-light: #e2c27a;
+  --color-cream: #f5f1e8;
+  --color-fog: #b8b1a4;
+  --color-whatsapp: #25d366;
+
+  --font-display: "Frank Ruhl Libre", "David Libre", "Noto Serif Hebrew", Georgia, serif;
+  --font-sans: "Assistant", "Noto Sans Hebrew", system-ui, -apple-system, sans-serif;
+
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-razor-line: razor-line 0.9s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes razor-line {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+html,
+body {
+  background: var(--color-ink);
+  color: var(--color-cream);
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-size: calc(16px * var(--a11y-scale, 1));
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-ink);
+}
+
+/* Visible, high-contrast focus ring on every interactive element */
+:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Accessibility panel: user-controlled overrides */
+html.a11y-reduce-motion *,
+html.a11y-reduce-motion *::before,
+html.a11y-reduce-motion *::after {
+  animation-duration: 0.001ms !important;
+  transition-duration: 0.001ms !important;
+}
+
+html.a11y-grayscale {
+  filter: grayscale(1);
+}
+
+html.a11y-high-contrast {
+  --color-ink: #000000;
+  --color-ink-soft: #000000;
+  --color-card: #0a0a0a;
+  --color-hairline: rgba(255, 215, 130, 0.55);
+  --color-gold: #ffd782;
+  --color-gold-light: #ffe6ab;
+  --color-cream: #ffffff;
+  --color-fog: #e8e4dc;
+}
+
+html.a11y-highlight-links a:not(.no-underline-override) {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}

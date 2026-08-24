@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.raphaelbarber.co.il/sitemap.xml
